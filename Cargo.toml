@@ -16,14 +16,14 @@
     "usage",
     "derive",
   ] }
-  chirpstack_api = { version = "4.16", default-features = false }
+  chirpstack_api = { version = "4.17", default-features = false }
   lrwn_filters = { version = "4.16", features = ["serde"] }
   log = "0.4"
   simple_logger = { version = "5.2", default-features = false, features = [
     "timestamps",
   ] }
   syslog = "7.0"
-  toml = { version = "1.0", default-features = false, features = [
+  toml = { version = "1.1", default-features = false, features = [
     "std",
     "parse",
     "serde",
@@ -32,7 +32,7 @@
   anyhow = "1.0"
   humantime-serde = "1.1"
   serde = { version = "1.0", features = ["derive"] }
-  tokio = { version = "1.40", features = [
+  tokio = { version = "1.51", features = [
     "macros",
     "rt-multi-thread",
     "time",
@@ -47,8 +47,8 @@
   signal-hook-tokio = { version = "0.4", features = ["futures-v0_3"] }
   futures = "0.3"
   zmq = "0.10"
-  cmac = "0.7"
-  aes = "0.8"
+  cmac = "0.8"
+  aes = "0.9"
 
 [dev-dependencies]
   zeromq = "0.5"

@@ -2,9 +2,9 @@ use std::fmt;
 use std::io::{Cursor, Read};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
-use aes::{Aes128, Block, cipher::BlockEncrypt};
+use aes::{Aes128, Block, cipher::BlockCipherEncrypt};
 use anyhow::{Context, Result};
-use cmac::{Cmac, Mac};
+use cmac::{Cmac, KeyInit, Mac};
 use log::warn;
 
 use crate::aes128::Aes128Key;
@@ -140,7 +140,7 @@ impl MeshPacket {
     }
 
     fn calculate_mic(&self, key: Aes128Key) -> Result<[u8; 4]> {
-        let mut mac = <Cmac<Aes128> as Mac>::new_from_slice(&key.to_bytes()).unwrap();
+        let mut mac = Cmac::<Aes128>::new_from_slice(&key.to_bytes()).unwrap();
         mac.update(&self.mic_bytes()?);
         let cmac_f = mac.finalize().into_bytes();
         // sanity Check

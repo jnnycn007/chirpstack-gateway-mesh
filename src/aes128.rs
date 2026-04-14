@@ -3,7 +3,7 @@ use std::str::FromStr;
 
 use aes::{
     Aes128, Block,
-    cipher::{BlockEncrypt, KeyInit},
+    cipher::{BlockCipherEncrypt, KeyInit},
 };
 use anyhow::{Error, Result};
 use serde::{
