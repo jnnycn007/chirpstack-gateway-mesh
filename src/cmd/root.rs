@@ -7,8 +7,8 @@ use crate::config::Configuration;
 use crate::{backend, commands, events, proxy};
 
 pub async fn run(conf: &Configuration) -> Result<()> {
-    proxy::setup(conf).await?;
     backend::setup(conf).await?;
+    proxy::setup(conf).await?;
     events::setup(conf).await?;
     commands::setup(conf).await?;
 
