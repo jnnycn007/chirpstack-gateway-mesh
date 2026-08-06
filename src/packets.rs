@@ -631,7 +631,7 @@ pub struct HeartbeatPayload {
 
 impl HeartbeatPayload {
     pub fn from_slice(b: &[u8]) -> Result<Self> {
-        if b.len() % 6 != 0 {
+        if !b.len().is_multiple_of(6) {
             return Err(anyhow!("Invalid amount of Relay path bytes"));
         }
 
@@ -895,7 +895,7 @@ pub fn encode_freq(freq: u32) -> Result<[u8; 3]> {
     if freq / 100 >= (1 << 24) {
         return Err(anyhow!("Max frequency value is 2^24 - 1"));
     }
-    if freq % 100 != 0 {
+    if !freq.is_multiple_of(100) {
         return Err(anyhow!("Frequency must be multiple of 100"));
     }
 
